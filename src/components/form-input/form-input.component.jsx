@@ -1,6 +1,6 @@
 import './from-input.styles.scss'
 
-function formInput({label,...otherProps}) {
+function FormInput({label,...otherProps}) {
     return (
         <div className="group">
             <input {...otherProps} className='form-input'/>
@@ -12,4 +12,4 @@ function formInput({label,...otherProps}) {
     )
 }
 
-export default formInput
+export default FormInput
