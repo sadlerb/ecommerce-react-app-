@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import { createAuthUserWithEmailAndPassword,createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
@@ -13,10 +13,12 @@ const defualtFormFields = {
     confirmPassword:''
 }
 
+
+
 function SignUpForm() {
     const [formFields,setFormFields] = useState(defualtFormFields);
     const {displayName,email,password,confirmPassword} = formFields;
-    console.log(formFields)
+
 
     function handelChange(event){
         const {name,value} = event.target;
@@ -39,6 +41,8 @@ function SignUpForm() {
         try{
             const {user} = await createAuthUserWithEmailAndPassword(email,password)
             const userDocRef = await createUserDocumentFromAuth(user,{'displayName':displayName});
+
+
             resetFields()
 
         }catch(error){
