@@ -1,23 +1,16 @@
+import USER_ACTION_TYPES from './user.types';
 
-import { USER_ACTION_TYPES } from "./user.types";
+export const USER_INITIAL_STATE = {
+  currentUser: null,
+};
 
+export const userReducer = (state = USER_INITIAL_STATE, action = {}) => {
+  const { type, payload } = action;
 
-export const userReduser = (state = INITIAL_STATE,action) =>{
-    const {type,payload} = action
-
-
-   switch(type){
+  switch (type) {
     case USER_ACTION_TYPES.SET_CURRENT_USER:
-        return{
-            ...state,
-            currentUser:payload
-        }
-    
+      return { ...state, currentUser: payload };
     default:
-        return state;
-   }
-}
-
-const INITIAL_STATE = {
-    currentUser:null
+      return state;
+  }
 };

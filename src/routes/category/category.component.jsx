@@ -1,20 +1,21 @@
-import './category.styles.scss'
+import './category.styles.scss';
 
-import {useParams} from 'react-router-dom'
-import { useContext } from 'react'
-import { CategoriesContext } from '../../context/categories.context'
-import { useState } from 'react'
-import { useEffect } from 'react'
-import ProductCard from '../../components/product-card/product-card.component'
+import {useParams} from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectCategoriesMap } from '../../store/categories/category.selector';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import ProductCard from '../../components/product-card/product-card.component';
 
 function Category(){
-    const {category} = useParams()
-    const {categoriesMap} = useContext(CategoriesContext)
-    const [products,setProducts] = useState(categoriesMap[category])
+    const {category} = useParams();
+   
+    const categoriesMap = useSelector(selectCategoriesMap);
+    const [products,setProducts] = useState(categoriesMap[category]);
 
     useEffect(()=>{
         setProducts(categoriesMap[category])
-    },[category,categoriesMap])
+    },[category,categoriesMap]);
 
     return(
         <>
@@ -23,8 +24,8 @@ function Category(){
                 {products && products.map((product)=><ProductCard key={products.id} product={product}/>)}
             </div>
         </>
-    )   
-}
+    );   
+};
 
 
-export default Category
+export default Category;

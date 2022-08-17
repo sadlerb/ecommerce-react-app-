@@ -29,7 +29,7 @@ function SignInForm (){
     async function handelSubmit(event) {
         event.preventDefault()
         try{
-            const {user} = await signInAuthUserWithEmailAndPassword(email,password)
+            await signInAuthUserWithEmailAndPassword(email,password)
             resetFields()
         }catch (error){
             switch(error.code){
