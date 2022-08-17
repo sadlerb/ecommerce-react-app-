@@ -1,5 +1,4 @@
-import { type } from "@testing-library/user-event/dist/type";
-import { createContext, useState, useEffect,useReducer } from "react";
+import { createContext, useEffect,useReducer } from "react";
 import { createUserDocumentFromAuth, onAuthStateChangedListener } from "../utils/firebase/firebase.utils";
 
 
@@ -26,6 +25,7 @@ const userReduser = (state,action) =>{
         }
     
     default:
+        // eslint-disable-next-line no-template-curly-in-string
         throw new Error('Unhandeled Type ${type} in userReducer');
    }
 }
