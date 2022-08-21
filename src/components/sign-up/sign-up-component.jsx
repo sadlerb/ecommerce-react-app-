@@ -1,8 +1,9 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
+import {useDispatch} from "react-redux"
 
-import { createAuthUserWithEmailAndPassword,createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
+import {signUpStart} from '../../store/user/user.action'
 
 import './sign-up-from.styles.scss'
 
@@ -18,6 +19,7 @@ const defualtFormFields = {
 function SignUpForm() {
     const [formFields,setFormFields] = useState(defualtFormFields);
     const {displayName,email,password,confirmPassword} = formFields;
+    const dispatch = useDispatch()
 
 
     function handelChange(event){
@@ -39,11 +41,8 @@ function SignUpForm() {
 
 
         try{
-            const {user} = await createAuthUserWithEmailAndPassword(email,password)
-            const userDocRef = await createUserDocumentFromAuth(user,{'displayName':displayName});
-
-
-            resetFields()
+           dispatch(signUpStart(email,password,displayName))       
+           resetFields()
 
         }catch(error){
             console.log(error)

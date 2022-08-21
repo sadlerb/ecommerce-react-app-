@@ -1,12 +1,15 @@
 import Button,{BUTTON_TYPE_CLASSES} from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
+import { useDispatch } from 'react-redux';
 
+import { googleSignInStart } from "../../store/user/user.action";
 
 import { useState} from "react";
-import { signInAuthUserWithEmailAndPassword,signInWithGooglePopup,createUserDocumentFromAuth} from "../../utils/firebase/firebase.utils";
 import './sign-in.styles.scss'
 
 function SignInForm (){
+    const dispatch = useDispatch()
+    const googleSignInUser = () => dispatch(googleSignInStart());
     const defualtFormFields = {
         email:'',
         password:'',
@@ -21,16 +24,15 @@ function SignInForm (){
 
 
     async function signIWithGoogle() {
-        const {user} = await signInWithGooglePopup();
-        await createUserDocumentFromAuth(user);
+        dispatch(googleSignInUser())
  
     };
 
     async function handelSubmit(event) {
         event.preventDefault()
         try{
-            await signInAuthUserWithEmailAndPassword(email,password)
-            resetFields()
+            dispatch();
+            resetFields(email,password);
         }catch (error){
             switch(error.code){
                 case 'auth/wrong-password':
