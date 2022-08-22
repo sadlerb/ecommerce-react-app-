@@ -21,12 +21,12 @@ import {
 } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDDU4V-_QV3M8GyhC9SVieRTDM4dbiT0Yk',
-  authDomain: 'crwn-clothing-db-98d4d.firebaseapp.com',
-  projectId: 'crwn-clothing-db-98d4d',
-  storageBucket: 'crwn-clothing-db-98d4d.appspot.com',
-  messagingSenderId: '626766232035',
-  appId: '1:626766232035:web:506621582dab103a4d08d6',
+  apiKey: "AIzaSyAfe68XxXXKRmA5zEhEgFgPzykrXcDWhYI",
+  authDomain: "ecommerce-db-ae71b.firebaseapp.com",
+  projectId: "ecommerce-db-ae71b",
+  storageBucket: "ecommerce-db-ae71b.appspot.com",
+  messagingSenderId: "1089343280485",
+  appId: "1:1089343280485:web:08506c202aee25aef63d8c"
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -81,6 +81,7 @@ export const createUserDocumentFromAuth = async (
   const userSnapshot = await getDoc(userDocRef);
 
   if (!userSnapshot.exists()) {
+    console.log(userAuth)
     const { displayName, email } = userAuth;
     const createdAt = new Date();
 
