@@ -57,7 +57,7 @@ export const clearItemFromCart = (cartItems: CartItem[],cartItemToCLear:CartItem
     return setCartItems(newCartItems);
 }
 
-export const setIsCartOpen = withMatcher((boolean):SetIsCartOpen =>
+export const setIsCartOpen = withMatcher((boolean:boolean):SetIsCartOpen =>
     createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN,boolean))
 
 export const setCartItems = withMatcher((cartItems:CartItem[]):SetCartItems => 
